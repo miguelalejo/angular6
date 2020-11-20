@@ -1,0 +1,26 @@
+<html ng-app="app">
+  <head>
+    <title>My Angular app</title>
+    <script src="js/angular.js"></script>
+  </head>
+  <body>
+
+    <div ng-controller="MainController as main">
+      {{ main.myObject }}
+      {{ main.text |uppercase}}
+    </div >
+    <div ng-controller="MainController as main">
+       <a href="" ng-click="key='one'">ONE</a>
+       <a href="" ng-click="key='two'">TWO</a>
+        <p>{{main.myObject[key]}}</p>
+    </div>
+    <div ng-controller="MainController as main">
+      <p>Items:{{main.myArray}}</p>
+      <p>Nro. Items:{{main.myArray.length}}</p>
+      <p>{{main.myArray.length>0?'Something here':'Nothing here'}}</p>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/MainController.js"></script>
+  </body>
+</html>

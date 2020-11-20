@@ -1,0 +1,31 @@
+<html ng-app="app">
+  <head>
+    <title>My Angular app</title>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <style>
+        h1 {font-size: 20px;}
+        .counter {background: #f9f9f9;padding: 15px;border-radius: 4px;}
+        .counter button { background: #338dbc; border: 0; border-radius: 3px; color: #fff; }
+      </style>
+  </head>
+  <body>
+    <h1>My Angular</h1>
+    <nav>
+      <ul>
+        <li>
+          <a ui-sref="home">Home</a>
+        </li>
+        <li>
+          <a ui-sref="about">About</a>
+        </li>
+      </ul>
+    </nav>
+    <ui-view></ui-view>
+
+    <script src="js/app.route.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/HomeController.js"></script>
+    <script src="js/AboutController.js"></script>
+  </body>
+</html>

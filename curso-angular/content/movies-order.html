@@ -1,0 +1,57 @@
+<html ng-app="app">
+  <head>
+    <title>My Angular app</title>
+    <script src="js/angular.js"></script>
+    <style>
+      .old {background: red;}
+      .modern {background: violet;}
+      .new {background: green;}
+      img {
+        max-width: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div ng-controller="MoviesController as movies">
+      <form ng-submit="movies.addMovie();">
+        <input type="text" placeholder="Title" ng-focus="movies.onFocus()" ng-blur="movies.onBlur()"  ng-model="movies.newTitle">
+        <input type="text" placeholder="Year" ng-model="movies.newYear" ng-change="movies.onChange()">
+        <input type="submit" value="Add Moive">
+      </form>
+      <ul>
+        ORDER BY:
+        <a href="" ng-click=" type = 'year'">YEAR</a>
+        <a href="" ng-click=" type = 'title'">TITLE</a>
+        <input type="checkbox" ng-model="main.orderBy">
+        <li ng-repeat="likemovie in movies.likesMovieList|orderBy: type:main.orderBy">
+            <p>Title likes:{{likemovie.title}}-{{likemovie.year}}</p>
+            <a href="" ng-click="movies.removeLikes(index)">Unlike this movie:(</a>
+        </li>
+      </ul>
+
+      <ul>
+        SEARCH<input type="text" placeholder="ALL" ng-model="search">
+        <br>
+        SEARCH YEAR<input type="text" placeholder="YEAR" ng-model="search">
+        <li
+          ng-class="{
+            old: movie.year < 1995,
+            modern: movie.year > 1995 && movie.year < 2000,
+            new: movie.year > 2000
+          }"
+          ng-repeat="movie in movies.favorites | filter:{year:search}">
+          <img ng-src="//ia.media-imdb.com/images/{{movie.img}}" alt="">
+          <a ng-href="//imdb.com/title/{{movie.imdb}}" target="_blank">
+            {{ movie.title }}-{{$index}}
+          </a>
+          <p>Released in: {{ movie.year }}</p>
+          <a href="" ng-click="movies.addToLikes(movie);">Like this movie</a>
+          <input type="text" ng-model="movie.year">
+        </li>
+      </ul>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/MoviesController.js"></script>
+  </body>
+</html>

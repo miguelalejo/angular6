@@ -1,0 +1,42 @@
+<html ng-app='app'>
+    <head>
+        <title>Prueba Controller</title>
+        <script src="js/angular.js" ></script>
+        <link rel="stylesheet" href="css/todomvc-app.css">
+        <link rel="stylesheet" href="css/todomvc-common.css">
+    </head>
+    <body>
+        <div class="todo" ng-controller='TodoController as todo'>
+            <form ng-submit="todo.addTodo();">
+                <input class="new-todo" type="text" placeholder="Add new todo" ng-model="todo.newTodo">
+            </form>
+           <ul class="todo-list">               
+               <li ng-repeat="item in todo.list | orderBy: 'id' ">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" id="todo-{{item.id}}" ng-model="item.completed" ng-blur="todo.updateTodo(item,$index);" > 
+                        <label ng-dblclick="showEditField=true;"  ng-hide="showEditField">{{item.title}}-{{item.id}}</label>
+                        <input class="editable" type="text" ng-model="item.title"  ng-show="showEditField" ng-blur="todo.updateTodo(item,$index);showEditField=false;">
+                        <button class="destroy" ng-click="todo.removeTodo(item,$index);"></button>  
+                        
+                        <p ng-show="item.action">COMPLETED</p>
+                    </div>
+               </li>               
+           </ul>
+           <p>
+                <span class="todo-count" ng-show="todo.getRemaining().length>0&&todo.getRemaining().length<todo.list.length">
+                    You have {{todo.getRemaining().length}} of {{todo.list.length}} items!
+                </span>
+                <span class="todo-count" ng-show="todo.getRemaining().length===0">
+                    You are super productive!!! 
+                </span>
+                <span class="todo-count" ng-show="todo.getRemaining().length===todo.list.length">
+                        You must do all these chores :( 
+                </span>
+            </p>
+        </div>
+        
+        <script src="js/app.js" ></script>
+        <script src="js/TodoController.js"></script>
+        <script src="js/TodoService.js"></script>
+    </body>
+</html>

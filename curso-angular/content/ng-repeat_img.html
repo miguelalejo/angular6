@@ -1,0 +1,40 @@
+<html ng-app='app'>
+    <head>
+        <title>Prueba Controller</title>
+        <script src="js/angular.js" ></script>
+        <style>
+        .old{background: red;}
+        .modern{background: violet;}
+        .new{background: blue;}
+    </style>
+    </head>
+    
+    <body>
+        <div ng-controller='MoviesController as movies'>
+            <ul>
+                <li ng-class="{
+                    old: movie.year <= 2000,
+                    modern: movie.year>=2000 && movie.year<2010,
+                    new: movie.year>=2010
+                }" ng-repeat="movie in movies.favorites">
+                    <p>{{$index}}-{{movie.title}}</p>
+                    <img src="images/{{movie.image}}" alt="movie.image" height="150" width="80">
+                    <p>Released in:{{movie.year}}</p>
+                    <input type="text" ng-model="movie.year">
+                    
+                    <p ng-show='movie.popular'>Awesome movie</p>
+                    <p ng-hide="movie.stars='ZERO'">Stars:</p>
+                    <p ng-if="movie.year>'2010'">Quite new!!!</p>
+                    <div ng-switch='movie.category'>
+                        <div ng-switch-when='science fiction'>Science Fiction Movie</div>
+                        <div ng-switch-when='action'>Action movie!!!</div>
+                        <div ng-switch-when='historical'>History by H2</div>
+                        <div ng-switch-default>This movie has no category!</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script src="js/app.js" ></script>
+        <script src="js/MoviesController.js"></script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<html ng-app="app">
+  <head>
+    <title>My Angular app</title>
+    <script src="js/angular.js"></script>
+    <style>
+        h1 {font-size: 20px;}
+        .counter {background: #f9f9f9;padding: 15px;border-radius: 4px;}
+        .counter button { background: #338dbc; border: 0; border-radius: 3px; color: #fff; }
+      </style>
+  </head>
+  <body>
+    <div ng-controller="OrderController as order">
+        {{order.orderQuantity}}
+         <counter name="{{order.orderName}}" count="order.orderQuantity"></counter>
+         <counter name="{{order.orderNameHam}}" count="order.orderQuantityHam"></counter>
+         <counter name="{{order.orderName}}" count="order.orderQuantity"></counter>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/CounterController.js"></script> 
+    <script src="js/OrderBindingController.js"></script>      
+    <script src="js/counter.directive.binding.js"></script>
+  </body>
+</html>
